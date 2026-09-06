@@ -1,66 +1,193 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+🧾 Invoices Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A web-based invoicing system built with Laravel, designed to help businesses create, track, and manage customer invoices, products, and payment statuses — with reporting and data visualization built in.
 
-## About Laravel
+✨ Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+🔐 Authentication & Authorization
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- User registration and login (Laravel Breeze)
+- Email verification
+- Password reset / update
+- Role and permission management (Spatie Laravel Permission)
+- User management (admin can create/manage users and roles)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+🧾 Invoices
 
-## Learning Laravel
+- Create, edit, and delete invoices
+- Add multiple products/sections per invoice
+- Attach files/documents to invoices
+- View, preview, and download invoice attachments
+- Print invoices
+- Export invoices to Excel
+- Invoice status management (Paid / Unpaid / Partial)
+- Filter invoices by payment status
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+📦 Products & Sections
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Manage products (CRUD)
+- Manage sections/categories (CRUD)
+- Link products to sections and invoices dynamically
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+🗄️ Archive
 
-## Laravel Sponsors
+- Archive old/completed invoices
+- Dedicated archive view separate from active invoices
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+📊 Dashboard & Reports
 
-### Premium Partners
+- Interactive charts (bar, pie, line) showing:
+  - Invoice counts by status
+  - Total amounts by status
+  - Monthly invoice counts
+  - Monthly revenue totals
+- Invoices report with search
+- Customers report with search
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+📬 Notifications
 
-## Contributing
+- Automatic notifications sent to users when a new invoice is created
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+🏗️ Tech Stack
 
-## Code of Conduct
+**Backend:** PHP 8.2, Laravel 12
+**Auth:** Laravel Breeze, Spatie Laravel Permission
+**Charts & Reporting:** Laravel Charts, LarapexCharts, Chart.js
+**Excel Export:** Maatwebsite/Excel
+**Frontend:** Blade, Tailwind CSS, JavaScript, Vite
+**Testing:** Pest / PHPUnit
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+📁 Project Structure
 
-## Security Vulnerabilities
+Key backend directories:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+app/
+├── Http/
+│   ├── Controllers/     # Invoices, Products, Sections, Users, Roles, Reports, Dashboard...
+│   └── Requests/
+├── Models/              # invoices, products, sections, invoices_deatailes, invoices_attachement, User
+├── Notifications/       # AddInvoice notification
+└── Exports/             # InvoiceExcel export class
 
-## License
+database/
+├── factories/
+├── migrations/
+└── seeders/
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+resources/
+└── views/               # Blade templates
+
+routes/
+├── web.php
+└── auth.php
+```
+
+⚙️ Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/mhmd-shokr/Invoices_System.git
+cd Invoices_System
+```
+
+2. Install PHP dependencies
+```bash
+composer install
+```
+
+3. Install JS dependencies
+```bash
+npm install
+```
+
+4. Configure environment
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+5. Configure the database
+
+Update the database settings in `.env`, then run:
+```bash
+php artisan migrate
+```
+
+If seeders are available:
+```bash
+php artisan db:seed
+```
+
+6. Create storage link
+```bash
+php artisan storage:link
+```
+
+7. Build frontend assets
+```bash
+npm run build
+```
+
+8. Start the application
+```bash
+php artisan serve
+```
+
+🔐 Environment Variables
+
+Configure the required values in `.env`:
+
+```
+APP_NAME=
+APP_ENV=
+APP_KEY=
+APP_URL=
+
+DB_CONNECTION=
+DB_HOST=
+DB_PORT=
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+
+MAIL_MAILER=
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+```
+
+Never commit `.env` files or secret keys to GitHub.
+
+🚀 Current Status
+
+| Module | Status |
+|---|---|
+| Authentication | ✅ |
+| Roles & Permissions | ✅ |
+| Invoices (CRUD) | ✅ |
+| Products & Sections | ✅ |
+| File Attachments | ✅ |
+| Invoice Status Management | ✅ |
+| Archive | ✅ |
+| Excel Export | ✅ |
+| Print Invoice | ✅ |
+| Dashboard & Charts | ✅ |
+| Reports (Invoices/Customers) | ✅ |
+| Automated Testing | 🚧 |
+
+🔮 Future Improvements
+
+- Increase automated test coverage
+- Add a REST API layer for external/mobile clients
+- PDF export for invoices
+- Improve reporting filters and export options
+
+👨‍💻 Author
+
+**Mohamed Shokr**
+Laravel Backend Developer
+PHP · Laravel · MySQL · Spatie Permission · Laravel Charts
+
+⭐ If you find this project useful, feel free to explore the source code and leave a star.
